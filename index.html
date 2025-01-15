@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        color: white;
+        font-size: 1.5vh;
+        font-family: "Lucida Sans Regular", sans-serif;
+        background-image: linear-gradient(
+          to right,
+          rgb(47, 51, 179),
+          rgb(23, 189, 90)
+        );
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        text-align: center;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+        font-size: 2rem;
+        text-decoration: underline;
+      }
+
+      #section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+      h2 {
+        margin-top: 20px;
+        margin-bottom: 0px;
+      }
+
+      #button,
+      #button2 {
+        background-color: rgb(13, 8, 19);
+        color: white;
+        border: none;
+        margin: 10px;
+        border-radius: 5rem;
+        height: 40px;
+        width: 150px;
+        font-size: 14px;
+        box-shadow: 0px 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      #button2 {
+        background-color: rgb(13, 210, 66);
+        color: rgb(8, 0, 0);
+      }
+
+      #gradient {
+        height: auto;
+        width: 300px;
+        padding: 10px 20px;
+        background-color: rgb(18, 39, 61);
+        text-align: center;
+        box-shadow: 0px 1px 20px;
+        font-size: 14px;
+        font-family: Verdana, sans-serif;
+        border-radius: 5px;
+        border-left: 4px solid white;
+        border-top: 4px solid white;
+
+        cursor: pointer;
+        word-break: break-word;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Gradient Color Generator</h1>
+    <section id="section">
+      <div>
+        <button id="button">#051937</button>
+        <button id="button2">#008793</button>
+      </div>
+      <h2>Click here to copy gradient</h2>
+      <div id="gradient" class="copyCode">
+        background-image: linear-gradient( to right, rgb(47, 51, 179), rgb(23,
+        189, 90) );
+      </div>
+    </section>
+    <script>
+      const hexValue = () => {
+        let combination = "0123456789abcdef";
+        let colors = "#";
+        for (let i = 0; i < 6; i++) {
+          colors += combination[Math.floor(Math.random() * 16)];
+        }
+        return colors;
+      };
+      let rgb1 = "#000";
+      let rgb2 = "#000";
+
+      const bt1 = () => {
+        rgb1 = hexValue();
+        console.log(rgb1);
+        document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1},${rgb2})`;
+        copydiv.innerHTML = `background-image: linear-gradient( to right, ${rgb1},${rgb2});`;
+        btn1.innerHTML = `${rgb1}`;
+      };
+
+      const copydiv = document.querySelector(".copyCode");
+      copydiv.addEventListener("click", () => {
+        navigator.clipboard.writeText(copydiv.textContent);
+        alert("Text copied to clipboard");
+      });
+
+      const bt2 = () => {
+        rgb2 = hexValue();
+        console.log(rgb2);
+        document.body.style.backgroundImage = `linear-gradient(to right,${rgb1} ,${rgb2})`;
+        copydiv.innerHTML = `background-image: linear-gradient( to right,${rgb1},${rgb2})`;
+        btn2.innerHTML = `${rgb2}`;
+      };
+
+      const btn1 = document.getElementById("button");
+      const btn2 = document.getElementById("button2");
+
+      btn1.addEventListener("click", bt1);
+      btn2.addEventListener("click", bt2);
+    </script>
+  </body>
+</html>
